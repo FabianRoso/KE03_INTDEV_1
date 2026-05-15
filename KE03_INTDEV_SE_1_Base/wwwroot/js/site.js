@@ -9,25 +9,49 @@ function productAanWinkelwagen(id, name, price, description) {
 
     winkelwagen.push({
         id: id,
-        naam: name,
-        prijs: price,
-        beschrijving: description
+        name: name,
+        price: price,
+        description: description
     });
 
     sessionStorage.setItem("winkelwagen", JSON.stringify(winkelwagen));
 }
 
 function laadWinkelwagen() {
-    const cart = document.getElementById("cart");
+    const cartDiv = document.getElementById("cart");
     const winkelwagen = JSON.parse(sessionStorage.getItem("winkelwagen")) || [];
 
     if (winkelwagen.length === 0) {
-        cart.innerText = "winkelwagen is leeg";
+        cartDiv.innerText = "winkelwagen is leeg";
         return;
     }
 
-    cart.innerHTML = winkelwagen
-        .map(p => `${p.naam} - €${p.prijs}`)
-        .join("<br>");
-    
+    let html = "";
+
+    winkelwagen.forEach(function (product, index) {
+        html += `
+            <div>
+                <h3>${product.name}</h3>
+                <p>Prijs: €${product.price}</p>
+                <p>${product.description}</p>
+
+                <button onclick="verwijderUitWinkelwagen(${index})">
+                    Verwijder
+                </button>
+            </div>
+            <hr>
+        `;
+    });
+
+    cartDiv.innerHTML = html;
+}
+
+function verwijderUitWinkelwagen(index) {
+    let cart = JSON.parse(sessionStorage.getItem("winkelwagen")) || [];
+
+    cart.splice(index, 1);
+
+    sessionStorage.setItem("winkelwagen", JSON.stringify(cart));
+
+    laadWinkelwagen();
 }
