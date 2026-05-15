@@ -7,6 +7,13 @@
 
 <div id="cart"></div>
 
+<form method="post" onsubmit="krijgWinkelwagen()">
+    <input type="hidden" id="cartData" name="cartData" />
+    <button type="submit">
+        Bestellen
+    </button>
+</form>
+
 <script src="~/js/site.js"></script>
 <script>
 	laadWinkelwagen()

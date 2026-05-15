@@ -7,6 +7,8 @@ function productAanWinkelwagen(id, name, price, description) {
 
     let winkelwagen = JSON.parse(sessionStorage.getItem("winkelwagen")) || []
 
+    price = parseFloat(price.replace(",", "."));
+
     winkelwagen.push({
         id: id,
         name: name,
@@ -54,4 +56,10 @@ function verwijderUitWinkelwagen(index) {
     sessionStorage.setItem("winkelwagen", JSON.stringify(cart));
 
     laadWinkelwagen();
+}
+
+function krijgWinkelwagen() {
+    let cart = sessionStorage.getItem("winkelwagen") || "[]";
+
+    document.getElementById("cartData").value = cart;
 }
