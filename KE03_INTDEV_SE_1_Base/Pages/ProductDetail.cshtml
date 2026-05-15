@@ -1,0 +1,15 @@
+﻿@page "{productId:int}"
+@model KE03_INTDEV_SE_1_Base.Pages.ProductDetailModel
+@{
+}
+
+<h1>Productpagina</h1>
+
+@Model.product.Name
+@Model.product.Price
+
+<button onclick="productAanWinkelwagen('@Model.product.Id', '@Model.product.Name', '@Model.product.Price', '@Model.product.Description')">
+	Voeg toe
+</button>
+
+<script src="/js/site.js"></script>
