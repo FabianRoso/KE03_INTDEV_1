@@ -62,4 +62,6 @@ function krijgWinkelwagen() {
     let cart = sessionStorage.getItem("winkelwagen") || "[]";
 
     document.getElementById("cartData").value = cart;
+
+    sessionStorage.removeItem("winkelwagen");
 }

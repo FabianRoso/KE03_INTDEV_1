@@ -1,0 +1,42 @@
+﻿@page
+@model KE03_INTDEV_SE_1_Base.Pages.OrderHistory.OrderHistoryModel
+@{
+}
+
+<h1>Bestelgeschiedenis</h1>
+
+<form method="post">
+
+    <label>Klant:</label>
+
+    <select asp-for="SelectedCustomerId">
+        @foreach (var customer in Model.customers)
+        {
+            <option value="@customer.Id">
+                @customer.Name
+            </option>
+        }
+    </select>
+
+    <button type="submit">
+        Toon bestellingen
+    </button>
+
+</form>
+
+@if (Model.orders != null)
+{
+    @foreach (var order in Model.orders)
+    {
+        <h3>Order @order.Id</h3>
+
+        <p>Datum: @order.OrderDate</p>
+
+        <ul>
+            @foreach (var product in order.Products)
+            {
+                <li>@product.Name</li>
+            }
+        </ul>
+    }
+}
