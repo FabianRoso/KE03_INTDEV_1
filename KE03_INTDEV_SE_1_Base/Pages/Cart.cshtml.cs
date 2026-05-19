@@ -43,7 +43,6 @@ namespace KE03_INTDEV_SE_1_Base.Pages
                 NumberHandling = JsonNumberHandling.AllowReadingFromString
             };
 
-            // JSON uit winkelwagen lezen
             var winkelwagen = JsonSerializer.Deserialize<List<Product>>(cartData, options);
 
             if (winkelwagen == null || !winkelwagen.Any())
@@ -51,8 +50,6 @@ namespace KE03_INTDEV_SE_1_Base.Pages
                 return Page();
             }
 
-
-            // Bestaande producten uit database ophalen
             var echteProducten = new List<Product>();
 
             foreach (var item in winkelwagen)
@@ -65,7 +62,6 @@ namespace KE03_INTDEV_SE_1_Base.Pages
                 }
             }
 
-            // Nieuwe order maken
             Order order = new Order
             {
                 CustomerId = SelectedCustomerId,
@@ -73,7 +69,6 @@ namespace KE03_INTDEV_SE_1_Base.Pages
                 Products = echteProducten
             };
 
-            // Opslaan
             _orderRepository.AddOrder(order);
 
             return RedirectToPage("/Index");

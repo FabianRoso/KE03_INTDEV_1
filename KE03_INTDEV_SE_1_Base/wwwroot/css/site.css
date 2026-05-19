@@ -20,3 +20,12 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.productImg {
+    max-width: 300px;
+    max-height: auto;
+}
+
+.productDivHeight {
+    height: 400px
+}

@@ -3,16 +3,23 @@
 @{
 }
 
-<h1>Alle Producten</h1>
+<h1 class="">Alle Producten</h1>
 
 @foreach(var p in Model.Products)
 {
-	@p.Name;
-	@p.Price;
-	<a asp-page="ProductDetail" asp-route-productId="@p.Id">
-		<button>
-			Klik hier
-		</button>
-	</a>
-	<br />
+	<div class="row d-flex border border-primary productDivHeight">
+		<div class="col-sm">
+			<img class="productImg" src="@p.Image" />
+		</div>
+		<div class="col-sm">
+			@p.Name
+			@p.Price
+			<a asp-page="ProductDetail" asp-route-productId="@p.Id">
+				<button>
+					Klik hier
+				</button>
+			</a>
+			<br />
+		</div>
+	</div>
 }
